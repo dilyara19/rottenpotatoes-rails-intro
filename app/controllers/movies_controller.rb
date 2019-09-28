@@ -14,8 +14,7 @@ class MoviesController < ApplicationController
     @movies = Movie.order(params[:sort])
     @all_ratings = Movie.movie_ratings
     if params[:ratings]
-      @chosen_rating = params[:ratings].keys
-      @movies = Movie.chosen_rating(["G", "PG"])
+      @movies = Movie.chosen_rating(params[:ratings].keys)
     end
     if params[:sort] == 'title'
       @title_header = 'hilite'
