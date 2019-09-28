@@ -3,6 +3,12 @@
 
 %table#movies.table.table-striped.col-md-12
   %thead
+    = form_tag movies_path, :id=> 'rating_tag', :method => :get do
+      Include:
+      - @all_ratings.map do |rating|
+        = rating
+        = check_box_tag "ratings[#{rating}]",{value: '1', multiple: true, checked: true}, :id=> "ratings_#{rating}"
+      = submit_tag 'Refresh', :id=> 'ratings_submit'
     %tr
       %th{:class=>@title_header, :id=> "title_header"}= link_to "Movie Title", :sort => "title"
       %th Rating
@@ -15,5 +21,7 @@
         %td= movie.rating
         %td= movie.release_date
         %td= link_to "More about #{movie.title}", movie_path(movie)
-
+    %h1= params[:ratings]
 = link_to 'Add new movie', new_movie_path
+    
+        
