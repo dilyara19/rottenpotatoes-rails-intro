@@ -6,4 +6,7 @@ class Movie < ActiveRecord::Base
     def self.chosen_rating(rtng)
         Movie.where(rating: rtng)
     end
+    def self.ratings_sorting
+        
+    end
 end
